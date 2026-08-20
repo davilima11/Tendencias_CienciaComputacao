@@ -1,7 +1,5 @@
 # Atividade prática - Identificando a IA
 
-Esta atividade responde às cinco perguntas propostas na Aula 01 para cinco tecnologias ou aplicativos de uso cotidiano. Os exemplos abaixo foram escolhidos como uma seleção representativa; eles podem ser substituídos pelos aplicativos efetivamente usados pelo estudante.
-
 ## 1. Google Maps
 
 1. **Onde a IA está presente?** Na estimativa de rotas, tempo de chegada e condições de trânsito.
