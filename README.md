@@ -4,14 +4,8 @@ Descrição
 ---------
 Este repositório reúne materiais, planos de aula e objetos de aprendizagem sobre Tendências em Ciência da Computação. O conteúdo está organizado para uso em disciplinas, oficinas e formações, seguindo um modelo de plano de aula baseado nas 5W (Who, What, When, Where, Why) para facilitar o planejamento, execução e avaliação.
 
-Who (Para quem)
----------------
-- Público-alvo: estudantes de graduação em Ciência da Computação, Engenharia de Software e áreas afins; professores e instrutores interessados em atualizações tecnológicas; profissionais em formação continuada.
-- Nível: introdutório a intermediário (podendo conter módulos avançados identificados).
-- Pré-requisitos: lógica de programação básica, conhecimentos fundamentais de sistemas operacionais e redes (quando aplicável).
+## O que será abordado
 
-What (O que será abordado)
---------------------------
 - Temas principais (exemplos):
   - Inteligência Artificial e Aprendizado de Máquina
   - Ciência de Dados e Big Data
@@ -28,28 +22,7 @@ What (O que será abordado)
   - Notebooks interativos (Jupyter/Colab)
   - Avaliações formativas e rubricas
 
-When (Quando / Cronograma)
---------------------------
-- Estrutura sugerida:
-  - Módulo 1 (Semana 1–2): Introdução às tendências e panorama histórico
-  - Módulo 2 (Semana 3–5): IA e Ciência de Dados (teoria + prática)
-  - Módulo 3 (Semana 6–7): Computação em Nuvem e DevOps
-  - Módulo 4 (Semana 8): Segurança e ética
-  - Módulo 5 (Semana 9–10): Projetos finais / apresentações
-- Tempo por aula: 50–90 minutos (adaptável)
-- Formato: aulas semanais, intensivo (bootcamp) ou híbrido conforme necessidade
-
-Where (Onde / Recursos)
------------------------
-- Local físico: sala de aula com projetor / laboratório de informática
-- Local online: links para repositório, notebooks Colab, plataformas de videoconferência
-- Recursos necessários:
-  - Computadores com conexão à internet
-  - Conta GitHub para atividades práticas (repositório do curso)
-  - Ambientes Python (Jupyter/Colab), Docker (quando aplicável)
-  - Softwares específicos documentados em cada módulo
-
-Why (Por que / Objetivos e justificativa)
+Objetivos e justificativa
 -----------------------------------------
 - Objetivos gerais:
   - Atualizar estudantes sobre as principais tendências que moldam a computação atual.
@@ -104,11 +77,6 @@ Como contribuir
 Licença
 -------
 - Este projeto está licenciado sob [escolha uma licença, ex.: CC BY-SA 4.0 / MIT] — ver arquivo LICENSE.
-
-Contato
--------
-- Mantainer: davilima11 (GitHub)
-- Para dúvidas ou propostas, abra uma issue no repositório.
 
 Notas finais
 ------------
