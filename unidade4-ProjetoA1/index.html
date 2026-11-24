@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <title>DecifraBot</title>
+  <meta name="description" content="Explica código Python e JavaScript em português, linha por linha. Projeto final da Unidade IV de Tendências em Ciência da Computação (UDF).">
+  <link rel="stylesheet" href="pagina/estilo.css">
+  <script src="pagina/bibliotecas/marked.min.js" defer></script>
+  <script src="pagina/bibliotecas/pyodide/pyodide.js" defer></script>
+  <script src="pagina/app.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">
+      <h1>DecifraBot</h1>
+      <p>Explica código em português, linha por linha</p>
+    </div>
+  </header>
+
+  <div class="abas" role="tablist" aria-label="Seções do site">
+    <button type="button" role="tab" id="aba-conversa" aria-selected="true" data-painel="painel-conversa">Conversar</button>
+    <button type="button" role="tab" id="aba-docs" aria-selected="false" tabindex="-1" data-painel="painel-docs">Documentação</button>
+  </div>
+
+  <main>
+    <section id="painel-conversa" role="tabpanel" aria-labelledby="aba-conversa">
+      <div class="conversa-layout">
+        <div class="chat">
+          <div id="mensagens" role="log" aria-label="Conversa com o DecifraBot"></div>
+          <form id="form-chat" autocomplete="off">
+            <fieldset class="seletor" id="seletor" disabled>
+              <legend>Linguagem do código</legend>
+              <div class="opcoes">
+                <label><input type="radio" name="linguagem" value="Python" checked><span>Python</span></label>
+                <label><input type="radio" name="linguagem" value="JavaScript"><span>JavaScript</span></label>
+              </div>
+            </fieldset>
+            <label for="campo" class="oculto">Código ou pergunta</label>
+            <textarea id="campo" rows="3" spellcheck="false" placeholder="Cole um código em Python ou faça uma pergunta..." disabled></textarea>
+            <div class="enviar">
+              <span class="dica">Enter envia · Shift+Enter pula linha</span>
+              <button type="submit" disabled>Enviar</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="lateral" aria-label="Sobre o DecifraBot">
+          <h2>Como funciona</h2>
+          <p>Escolha a linguagem acima do campo, cole um código em <strong>Python</strong> ou <strong>JavaScript</strong> e eu explico cada linha. Depois dá para pedir "explica a linha 4", "resume" ou perguntar "o que é um for?".</p>
+          <p class="aviso">Eu <strong>não escrevo nem corrijo</strong> código. Meu papel é te ajudar a entender.</p>
+
+          <h2>Experimente</h2>
+          <div id="exemplos" class="exemplos"></div>
+
+          <p class="nota">Tudo roda no seu navegador: o código que você cola não é enviado para servidor nenhum. Senhas e chaves são escondidas antes da análise, e a conversa some quando você fecha a página.</p>
+          <button type="button" id="limpar" class="secundario" disabled>Limpar conversa</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="painel-docs" role="tabpanel" aria-labelledby="aba-docs" hidden>
+      <div class="docs-layout">
+        <nav aria-label="Documentos do projeto">
+          <ul>
+            <li><a href="#doc/1-especificacao" data-doc="1-especificacao">Especificação</a></li>
+            <li><a href="#doc/2-arquitetura-do-agente" data-doc="2-arquitetura-do-agente">Arquitetura do agente</a></li>
+            <li><a href="#doc/3-etica-e-vies" data-doc="3-etica-e-vies">Ética e viés</a></li>
+            <li><a href="#doc/4-testes" data-doc="4-testes">Testes e curadoria</a></li>
+          </ul>
+        </nav>
+        <article id="visor" class="doc" tabindex="-1"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>O site roda o mesmo código Python do projeto, direto no navegador, com o <a href="https://pyodide.org">Pyodide</a>. Código-fonte: <a href="https://github.com/davilima11/Tendencias_CienciaComputacao/tree/main/unidade4-ProjetoA1">pasta unidade4-ProjetoA1 no GitHub</a>.</p>
+    <p>Ferramenta de IA usada como apoio: Claude.</p>
+  </footer>
+</body>
+</html>
