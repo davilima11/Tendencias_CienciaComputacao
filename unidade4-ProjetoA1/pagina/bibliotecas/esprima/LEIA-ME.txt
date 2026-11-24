@@ -1,0 +1,2 @@
+esprima-python 4.0.1 (https://github.com/Kronuz/esprima-python), copiado para o site conseguir ler JavaScript dentro do navegador.
+Licença: BSD 2-Clause.

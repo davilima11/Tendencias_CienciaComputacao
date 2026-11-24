@@ -1,0 +1,537 @@
+{
+  "conceitos": {
+    "variavel": {
+      "titulo": "variável",
+      "explicacao": "Uma variável é um nome que guarda um valor, como uma caixinha com etiqueta. Você guarda algo nela e depois usa o nome para pegar o valor de volta, ou para trocar por outro.",
+      "exemplos": {
+        "Python": "idade = 20\nidade = idade + 1",
+        "JavaScript": "let idade = 20;\nidade = idade + 1;"
+      },
+      "perguntas": [
+        "o que é variável",
+        "o que e uma variavel",
+        "pra que serve variável",
+        "como funciona variável",
+        "variavel",
+        "o que é let",
+        "o que é var"
+      ],
+      "termos": [
+        "variavel",
+        "variaveis",
+        "let",
+        "var"
+      ]
+    },
+    "constante": {
+      "titulo": "constante",
+      "explicacao": "Uma constante é parecida com uma variável, mas o valor dela não pode ser trocado depois de criado. No JavaScript se usa `const`. Serve para deixar claro que aquele valor não deve mudar.",
+      "exemplos": {
+        "Python": "# Python não tem constante de verdade; por costume, se escreve o nome em maiúsculas\nPI = 3.14",
+        "JavaScript": "const PI = 3.14;"
+      },
+      "perguntas": [
+        "o que é constante",
+        "o que é const",
+        "pra que serve const",
+        "diferença entre let e const",
+        "constante"
+      ],
+      "termos": [
+        "const",
+        "constante",
+        "constantes"
+      ]
+    },
+    "lista": {
+      "titulo": "lista (array)",
+      "explicacao": "Uma lista guarda vários valores em uma variável só, em ordem. Cada item tem uma posição, e a contagem começa em 0: o primeiro item é o da posição 0. No JavaScript ela se chama array.",
+      "exemplos": {
+        "Python": "notas = [7.5, 8, 6]\nprint(notas[0])  # mostra 7.5",
+        "JavaScript": "const notas = [7.5, 8, 6];\nconsole.log(notas[0]); // mostra 7.5"
+      },
+      "perguntas": [
+        "o que é lista",
+        "o que é um array",
+        "o que é vetor",
+        "pra que serve lista",
+        "como funciona array",
+        "lista",
+        "array",
+        "por que começa no zero"
+      ],
+      "termos": [
+        "lista",
+        "listas",
+        "array",
+        "arrays",
+        "vetor",
+        "vetores"
+      ]
+    },
+    "dicionario": {
+      "titulo": "dicionário (objeto)",
+      "explicacao": "Um dicionário guarda pares de nome e valor, como uma ficha: o nome (chave) diz o que é, e o valor é a informação. No JavaScript, a estrutura parecida se chama objeto.",
+      "exemplos": {
+        "Python": "aluno = {\"nome\": \"Ana\", \"idade\": 20}\nprint(aluno[\"nome\"])",
+        "JavaScript": "const aluno = { nome: \"Ana\", idade: 20 };\nconsole.log(aluno.nome);"
+      },
+      "perguntas": [
+        "o que é dicionário",
+        "o que é um objeto",
+        "o que é dict",
+        "pra que serve dicionário",
+        "o que é chave e valor",
+        "objeto"
+      ],
+      "termos": [
+        "dicionario",
+        "dicionarios",
+        "dict",
+        "objeto",
+        "objetos"
+      ]
+    },
+    "for": {
+      "titulo": "laço for",
+      "explicacao": "O `for` é um laço: ele repete um bloco de código várias vezes, uma para cada item de uma lista (ou para cada número de uma sequência). Serve para não ter que escrever a mesma coisa várias vezes.",
+      "exemplos": {
+        "Python": "for nota in [7, 8, 9]:\n    print(nota)",
+        "JavaScript": "for (const nota of [7, 8, 9]) {\n  console.log(nota);\n}"
+      },
+      "perguntas": [
+        "o que é for",
+        "o que é um laço",
+        "o que é loop",
+        "como funciona o for",
+        "pra que serve for",
+        "o que é repetição",
+        "o que é foreach",
+        "laço de repetição"
+      ],
+      "termos": [
+        "for",
+        "foreach",
+        "laco",
+        "lacos"
+      ]
+    },
+    "while": {
+      "titulo": "laço while",
+      "explicacao": "O `while` repete um bloco enquanto uma condição for verdadeira. A diferença para o `for` é que ele não sabe quantas vezes vai repetir: só para quando a condição ficar falsa. Se ela nunca ficar falsa, o programa fica preso para sempre.",
+      "exemplos": {
+        "Python": "contador = 0\nwhile contador < 3:\n    contador = contador + 1",
+        "JavaScript": "let contador = 0;\nwhile (contador < 3) {\n  contador++;\n}"
+      },
+      "perguntas": [
+        "o que é while",
+        "como funciona o while",
+        "diferença entre for e while",
+        "o que é laço infinito",
+        "while"
+      ],
+      "termos": [
+        "while"
+      ]
+    },
+    "if": {
+      "titulo": "condição (if)",
+      "explicacao": "O `if` faz uma pergunta. Se a resposta for verdade, o bloco dele roda; se não, ele é pulado. Com `elif` (Python) ou `else if` (JavaScript) dá para fazer outras perguntas, e o `else` é o que acontece quando nenhuma deu verdade.",
+      "exemplos": {
+        "Python": "if nota >= 7:\n    print(\"Aprovado\")\nelse:\n    print(\"Reprovado\")",
+        "JavaScript": "if (nota >= 7) {\n  console.log(\"Aprovado\");\n} else {\n  console.log(\"Reprovado\");\n}"
+      },
+      "perguntas": [
+        "o que é if",
+        "o que é condição",
+        "como funciona o if",
+        "o que é else",
+        "o que é elif",
+        "o que é else if",
+        "condicional",
+        "estrutura de decisão"
+      ],
+      "termos": [
+        "if",
+        "else",
+        "elif",
+        "condicional",
+        "condicionais"
+      ]
+    },
+    "funcao": {
+      "titulo": "função",
+      "explicacao": "Uma função é um pedaço de código com nome, que você escreve uma vez e usa quantas vezes quiser. Ela pode receber valores (os parâmetros) e devolver um resultado. O código dentro dela só roda quando alguém chama a função.",
+      "exemplos": {
+        "Python": "def dobro(numero):\n    return numero * 2\n\nprint(dobro(5))  # mostra 10",
+        "JavaScript": "function dobro(numero) {\n  return numero * 2;\n}\nconsole.log(dobro(5)); // mostra 10"
+      },
+      "perguntas": [
+        "o que é função",
+        "o que é def",
+        "o que é function",
+        "pra que serve função",
+        "o que é parâmetro",
+        "como criar uma função",
+        "o que é arrow function",
+        "o que é método"
+      ],
+      "termos": [
+        "funcao",
+        "funcoes",
+        "def",
+        "function",
+        "parametro",
+        "parametros",
+        "arrow"
+      ]
+    },
+    "return": {
+      "titulo": "return",
+      "explicacao": "O `return` termina a função e devolve um valor para quem chamou. É assim que a função entrega o resultado do trabalho dela. O que vem depois do `return`, dentro da função, não roda.",
+      "exemplos": {
+        "Python": "def soma(a, b):\n    return a + b",
+        "JavaScript": "function soma(a, b) {\n  return a + b;\n}"
+      },
+      "perguntas": [
+        "o que é return",
+        "o que o return faz",
+        "pra que serve return",
+        "diferença entre return e print"
+      ],
+      "termos": [
+        "return",
+        "retorno",
+        "retornar"
+      ]
+    },
+    "mostrar": {
+      "titulo": "mostrar na tela",
+      "explicacao": "Mostrar na tela é como o programa conversa com quem está usando. No Python se usa `print()` e no JavaScript `console.log()` (que aparece no console do navegador ou no terminal).",
+      "exemplos": {
+        "Python": "print(\"Olá!\")",
+        "JavaScript": "console.log(\"Olá!\");"
+      },
+      "perguntas": [
+        "o que é print",
+        "o que é console.log",
+        "como mostrar na tela",
+        "pra que serve print",
+        "o que o print faz",
+        "onde aparece o console.log"
+      ],
+      "termos": [
+        "print",
+        "console"
+      ]
+    },
+    "entrada": {
+      "titulo": "entrada de dados",
+      "explicacao": "Entrada de dados é quando o programa pausa e espera a pessoa digitar algo. No Python é o `input()`, e no JavaScript do navegador é o `prompt()`. O que a pessoa digita sempre chega como texto, mesmo que seja um número.",
+      "exemplos": {
+        "Python": "nome = input(\"Seu nome: \")",
+        "JavaScript": "const nome = prompt(\"Seu nome:\");"
+      },
+      "perguntas": [
+        "o que é input",
+        "o que é prompt",
+        "como ler o que a pessoa digita",
+        "pra que serve input",
+        "entrada de dados"
+      ],
+      "termos": [
+        "input",
+        "prompt"
+      ]
+    },
+    "conversao": {
+      "titulo": "conversão de tipo",
+      "explicacao": "Converter é transformar um valor de um tipo em outro, como o texto \"10\" no número 10. É muito usado depois de ler o que a pessoa digitou, porque isso sempre chega como texto, e texto não dá para usar em conta.",
+      "exemplos": {
+        "Python": "idade = int(input(\"Idade: \"))",
+        "JavaScript": "const idade = parseInt(prompt(\"Idade:\"));"
+      },
+      "perguntas": [
+        "o que é int",
+        "o que é float",
+        "o que é parseInt",
+        "o que é conversão",
+        "pra que serve o int",
+        "por que usar int no input",
+        "tipo de dado"
+      ],
+      "termos": [
+        "int",
+        "float",
+        "parseint",
+        "parsefloat",
+        "conversao",
+        "converter"
+      ]
+    },
+    "tamanho": {
+      "titulo": "tamanho (len / length)",
+      "explicacao": "Serve para saber quantos itens tem uma lista, ou quantas letras tem um texto. No Python é `len(lista)`, e no JavaScript é `lista.length`.",
+      "exemplos": {
+        "Python": "len([7, 8, 9])  # dá 3",
+        "JavaScript": "[7, 8, 9].length // dá 3"
+      },
+      "perguntas": [
+        "o que é len",
+        "o que é length",
+        "pra que serve len",
+        "como saber o tamanho da lista",
+        "quantos itens tem a lista"
+      ],
+      "termos": [
+        "len",
+        "length"
+      ]
+    },
+    "range": {
+      "titulo": "range",
+      "explicacao": "O `range` gera uma sequência de números, muito usada com o `for`. `range(5)` vai de 0 até 4: o último número nunca entra. `range(1, 4)` vai de 1 até 3.",
+      "exemplos": {
+        "Python": "for i in range(3):\n    print(i)  # 0, 1, 2",
+        "JavaScript": "// JavaScript não tem range; o mais parecido é o for com contador\nfor (let i = 0; i < 3; i++) {\n  console.log(i);\n}"
+      },
+      "perguntas": [
+        "o que é range",
+        "como funciona o range",
+        "por que o range não chega no último número",
+        "range"
+      ],
+      "termos": [
+        "range"
+      ]
+    },
+    "try": {
+      "titulo": "tratamento de erro (try)",
+      "explicacao": "O `try` tenta executar um bloco de código. Se der erro ali dentro, em vez de o programa parar, ele pula para o bloco de tratamento (`except` no Python, `catch` no JavaScript), onde você decide o que fazer.",
+      "exemplos": {
+        "Python": "try:\n    numero = int(\"abc\")\nexcept ValueError:\n    print(\"Isso não é um número\")",
+        "JavaScript": "try {\n  JSON.parse(\"isso não é json\");\n} catch (erro) {\n  console.log(\"Deu erro\");\n}"
+      },
+      "perguntas": [
+        "o que é try",
+        "o que é except",
+        "o que é catch",
+        "como tratar erro",
+        "pra que serve try",
+        "tratamento de exceção"
+      ],
+      "termos": [
+        "try",
+        "except",
+        "catch",
+        "excecao",
+        "excecoes"
+      ]
+    },
+    "modulo": {
+      "titulo": "módulo (import)",
+      "explicacao": "Um módulo é um pacote de funções prontas que alguém já escreveu. Em vez de fazer tudo do zero, você importa o módulo e usa as funções dele. No Python se usa `import`, e no JavaScript `import` ou `require`.",
+      "exemplos": {
+        "Python": "import random\nprint(random.randint(1, 6))",
+        "JavaScript": "const fs = require(\"fs\");"
+      },
+      "perguntas": [
+        "o que é import",
+        "o que é módulo",
+        "o que é biblioteca",
+        "o que é require",
+        "pra que serve import",
+        "o que é pacote"
+      ],
+      "termos": [
+        "import",
+        "modulo",
+        "modulos",
+        "biblioteca",
+        "bibliotecas",
+        "require",
+        "pacote"
+      ]
+    },
+    "texto_formatado": {
+      "titulo": "texto com valores (f-string / template string)",
+      "explicacao": "É um jeito de montar um texto colocando valores de variáveis no meio dele. No Python é a f-string (`f\"...{variavel}...\"`), e no JavaScript é a template string, escrita com crase (`` `...${variavel}...` ``).",
+      "exemplos": {
+        "Python": "nome = \"Ana\"\nprint(f\"Olá, {nome}!\")",
+        "JavaScript": "const nome = \"Ana\";\nconsole.log(`Olá, ${nome}!`);"
+      },
+      "perguntas": [
+        "o que é f-string",
+        "o que é template string",
+        "o que é crase no javascript",
+        "como colocar variável no texto",
+        "o que é o f antes do texto",
+        "o que é ${}"
+      ],
+      "termos": [
+        "fstring",
+        "f string",
+        "template",
+        "template string"
+      ]
+    },
+    "comparacao": {
+      "titulo": "comparação",
+      "explicacao": "Comparar é perguntar algo cuja resposta é verdadeiro ou falso: igual (`==`), diferente (`!=`), maior (`>`), menor (`<`). No JavaScript tem ainda o `===`, que além do valor confere se o tipo é o mesmo (o número 5 não é `===` ao texto \"5\").",
+      "exemplos": {
+        "Python": "5 > 3    # True\n5 == \"5\" # False",
+        "JavaScript": "5 > 3;     // true\n5 === \"5\"; // false"
+      },
+      "perguntas": [
+        "o que é ==",
+        "o que é ===",
+        "diferença entre == e ===",
+        "o que é comparação",
+        "o que é true e false",
+        "o que é booleano"
+      ],
+      "termos": [
+        "==",
+        "===",
+        "!=",
+        "!==",
+        "comparacao",
+        "booleano",
+        "true",
+        "false"
+      ]
+    },
+    "arquivo": {
+      "titulo": "arquivos",
+      "explicacao": "Programas podem ler e escrever arquivos no computador. No Python se usa `open()`, e o modo diz o que vai ser feito: \"r\" para ler, \"w\" para escrever (apagando o que tinha) e \"a\" para acrescentar no fim.",
+      "exemplos": {
+        "Python": "with open(\"notas.txt\", \"r\") as arquivo:\n    print(arquivo.read())",
+        "JavaScript": "const fs = require(\"fs\");\nconsole.log(fs.readFileSync(\"notas.txt\", \"utf8\"));"
+      },
+      "perguntas": [
+        "o que é open",
+        "como ler um arquivo",
+        "o que é with open",
+        "como escrever em arquivo",
+        "o que é o w no open"
+      ],
+      "termos": [
+        "open",
+        "arquivo",
+        "arquivos"
+      ]
+    }
+  },
+  "intencoes": {
+    "saudacao": {
+      "exemplos": [
+        "oi",
+        "olá",
+        "bom dia",
+        "boa tarde",
+        "boa noite",
+        "e aí",
+        "opa",
+        "oi tudo bem",
+        "oi decifrabot"
+      ],
+      "resposta": "Oi! Eu sou o DecifraBot. Escolha a linguagem (Python ou JavaScript), cole um código e eu explico o que cada parte faz, em português. Também posso explicar conceitos, é só perguntar algo como \"o que é um for?\"."
+    },
+    "ajuda": {
+      "exemplos": [
+        "o que você faz",
+        "como funciona",
+        "ajuda",
+        "como eu uso",
+        "o que você sabe fazer",
+        "quais linguagens você entende",
+        "me ajuda"
+      ],
+      "resposta": "Funciona assim:\n1. Escolha a linguagem do código (Python ou JavaScript) e cole o código. Eu explico linha por linha.\n2. Depois você pode pedir \"explica a linha 4\", \"resume\" ou perguntar sobre um conceito, como \"o que é uma lista?\".\n3. Se o código fizer algo que merece cuidado, como apagar arquivos ou expor uma senha, eu aviso.\n\nEu não escrevo nem corrijo código: meu papel é te ajudar a entender."
+    },
+    "agradecimento": {
+      "exemplos": [
+        "obrigado",
+        "valeu",
+        "obrigada",
+        "entendi",
+        "agora entendi",
+        "muito obrigado",
+        "show"
+      ],
+      "resposta": "Que bom que ajudou! Se aparecer outro código que você não entende, é só colar aqui."
+    },
+    "pedido_codigo": {
+      "exemplos": [
+        "corrige meu código",
+        "faz um código que",
+        "escreve um programa",
+        "me dá o código pronto",
+        "melhora esse código",
+        "cria um código para mim",
+        "conserta o erro pra mim",
+        "faz o exercício pra mim",
+        "resolve essa questão"
+      ],
+      "resposta": "Isso eu não faço: eu não escrevo nem corrijo código. Meu papel é te ajudar a entender. Se você colar o código que tem, eu explico cada parte, e aí fica mais fácil você mesmo enxergar o que mudar. Se for uma atividade valendo nota, a dúvida é com o seu professor ou monitor."
+    },
+    "resumo": {
+      "exemplos": [
+        "resume",
+        "resumo",
+        "explica por cima",
+        "o que esse código faz",
+        "explica de um jeito mais curto",
+        "me dá um resumo",
+        "explica rápido"
+      ],
+      "resposta": ""
+    },
+    "detalhado": {
+      "exemplos": [
+        "explica linha por linha",
+        "explica de novo",
+        "explica tudo",
+        "quero a explicação completa",
+        "detalha",
+        "mostra a explicação de novo"
+      ],
+      "resposta": ""
+    }
+  },
+  "mensagens": {
+    "inicial": "Oi! Eu sou o DecifraBot. Escolha a linguagem (Python ou JavaScript), cole um código e eu explico o que cada parte faz, em português. Também dá para perguntar sobre um conceito, como \"o que é um for?\".",
+    "nao_entendi": "Não tenho certeza se entendi. Você pode colar um código em Python ou JavaScript, pedir \"explica a linha 3\" sobre o último código, ou perguntar sobre um conceito, como \"o que é uma função?\".",
+    "com_duvida": "Acho que você está perguntando sobre {tema}. Se não for isso, me pergunta de outro jeito.\n\n",
+    "sem_codigo": "Ainda não tenho nenhum código para explicar. Cole um código em Python ou JavaScript primeiro.",
+    "linguagem_nao_suportada": "Isso parece {linguagem}. Por enquanto eu só explico Python e JavaScript. Outras linguagens estão nos planos.",
+    "dado_sensivel": "Opa, parece que você digitou {tipo}. Eu descartei essa mensagem e não guardei nada. Nunca compartilhe senha, cartão ou documento em chat nenhum.",
+    "mascarado": "Antes de explicar, escondi {itens} que estava no código. Nada disso foi guardado.",
+    "comprido": "O código tem {total} linhas. Mostrei a explicação das {limite} primeiras; para o resto, cole a parte que falta separado.",
+    "trocar_linguagem": "Certo, agora vou ler o código como {linguagem}.",
+    "linguagem_diferente": "Esse código parece {outra}, mas a linguagem escolhida é {escolhida}. Troque para {outra} no seletor de linguagem (ou escreva \"é {outra_minuscula}\") que eu explico.",
+    "parece_outra": "Esse código também funciona como {outra} e tem mais cara de {outra}. Expliquei como {escolhida}, que é a linguagem escolhida; se ele for {outra}, troque no seletor."
+  },
+  "sinonimos": {
+    "n": "nao",
+    "nao": "nao",
+    "pq": "porque",
+    "q": "que",
+    "oq": "o que",
+    "vc": "voce",
+    "pra": "para",
+    "ta": "esta",
+    "tb": "tambem",
+    "tbm": "tambem",
+    "funcao": "funcao",
+    "func": "funcao",
+    "lista": "lista",
+    "laco": "laco",
+    "loop": "laco",
+    "dicio": "dicionario",
+    "obj": "objeto",
+    "var": "var",
+    "cod": "codigo",
+    "codigo": "codigo"
+  }
+}

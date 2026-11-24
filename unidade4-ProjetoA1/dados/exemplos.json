@@ -1,0 +1,22 @@
+[
+  {
+    "titulo": "Média de notas (Python)",
+    "linguagem": "Python",
+    "codigo": "notas = [7.5, 8, 6]\ntotal = 0\nfor nota in notas:\n    total = total + nota\nmedia = total / len(notas)\nprint(\"Média:\", media)"
+  },
+  {
+    "titulo": "Aprovado ou não (JavaScript)",
+    "linguagem": "JavaScript",
+    "codigo": "function situacao(media) {\n  if (media >= 7) {\n    return \"Aprovado\";\n  } else if (media >= 5) {\n    return \"Recuperação\";\n  } else {\n    return \"Reprovado\";\n  }\n}\n\nconst nota = parseFloat(prompt(\"Digite sua média:\"));\nalert(situacao(nota));"
+  },
+  {
+    "titulo": "Código \"de limpeza\" que veio da IA",
+    "linguagem": "Python",
+    "codigo": "import os\n\napi_key = \"sk-proj-a8F3kL0pQ2xZ9vB7nM4c\"\npasta = \"C:/Users/aluno/Documentos\"\n\n# limpa os arquivos temporários\nfor arquivo in os.listdir(pasta):\n    os.remove(pasta + \"/\" + arquivo)\n\nprint(\"Limpeza concluída\")"
+  },
+  {
+    "titulo": "Busca no banco (Python)",
+    "linguagem": "Python",
+    "codigo": "import sqlite3\n\ndef buscar_aluno(nome):\n    conexao = sqlite3.connect(\"escola.db\")\n    sql = f\"SELECT * FROM alunos WHERE nome = '{nome}'\"\n    return conexao.execute(sql).fetchall()\n\nnome = input(\"Nome do aluno: \")\nprint(buscar_aluno(nome))"
+  }
+]
