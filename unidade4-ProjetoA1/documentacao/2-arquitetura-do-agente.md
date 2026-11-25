@@ -94,6 +94,23 @@ Para a professora e os colegas testarem sem instalar nada, o DecifraBot também 
 
 Isso também reforça a privacidade: no site, o código que a pessoa cola é analisado no próprio navegador dela e não vai para servidor nenhum. O GitHub só entrega os arquivos da página.
 
+O desenho abaixo mostra como as partes se ligam. O site e o Streamlit são só duas portas de entrada para o mesmo agente:
+
+```mermaid
+flowchart LR
+    P([Pessoa]) --> S["Site no GitHub Pages<br/>index.html + app.js"]
+    P --> T["Versão Streamlit<br/>app.py"]
+    S --> PY["Pyodide<br/>Python dentro do navegador"]
+    PY --> PO["ponte.py<br/>respostas em JSON"]
+    PO --> AG["agente.py<br/>4 camadas + memória"]
+    T --> AG
+    AG --> PR["privacidade.py<br/>esconde senhas e chaves"]
+    AG --> LG["linguagem.py<br/>reconhece outras linguagens"]
+    AG --> AN["analisadores/<br/>ast para Python, esprima para JS"]
+    AG --> TF["tfidf.py<br/>entende as perguntas"]
+    AG --> DA[("dados/<br/>conceitos e mensagens")]
+```
+
 A única peça nova é `decifra/ponte.py`, que transforma as respostas em JSON para a página mostrar. A página monta todo o texto que vem do código do usuário como texto puro, nunca como HTML, para que um código com `<script>` dentro de uma string não seja executado.
 
 ## Como adicionar uma linguagem

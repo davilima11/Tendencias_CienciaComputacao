@@ -79,7 +79,7 @@ dados/
   conhecimento.json           conceitos, perguntas e respostas
   exemplos.json               códigos de exemplo da tela
 pagina/                       estilo e script da versão web
-  bibliotecas/                Pyodide, esprima e marked (cópias, para o site não depender de outro servidor)
+  bibliotecas/                Pyodide, esprima, marked e Mermaid (cópias, para o site não depender de outro servidor)
 testes/                       testes com pytest e script de calibração
 documentacao/                 especificação, arquitetura, ética e testes
   imagens/                    print da tela
@@ -87,7 +87,7 @@ documentacao/                 especificação, arquitetura, ética e testes
 
 ## Tecnologias
 
-Python, Streamlit, o módulo `ast` do próprio Python, a biblioteca `esprima` (para ler JavaScript) e pytest. A versão online usa o Pyodide, que roda Python dentro do navegador. Não usa API de IA nenhuma: o código da pessoa não sai do computador dela. O motivo dessa escolha está na arquitetura.
+Python, Streamlit, o módulo `ast` do próprio Python, a biblioteca `esprima` (para ler JavaScript) e pytest. Os diagramas da documentação são feitos em Mermaid, que o GitHub e o site desenham. A versão online usa o Pyodide, que roda Python dentro do navegador. Não usa API de IA nenhuma: o código da pessoa não sai do computador dela. O motivo dessa escolha está na arquitetura.
 
 ## Mais linguagens
 
@@ -118,6 +118,7 @@ Cada linguagem tem um analisador próprio, mas as frases de explicação ficam n
 - Pyodide (Python no navegador, usado na versão web). Disponível em: https://pyodide.org
 - Streamlit (interface da versão em Python). Disponível em: https://streamlit.io
 - marked (exibição da documentação no site). Disponível em: https://marked.js.org
+- Mermaid (diagramas da documentação). Disponível em: https://mermaid.js.org
 - scikit-learn (usado só no teste que confere o TF-IDF feito à mão). Disponível em: https://scikit-learn.org
 - pytest (testes automatizados). Disponível em: https://pytest.org
 

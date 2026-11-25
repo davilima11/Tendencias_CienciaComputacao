@@ -1,0 +1,2 @@
+Mermaid 11.4.1 (desenha os diagramas da aba Documentação), copiado do pacote npm "mermaid".
+Licença: MIT - https://github.com/mermaid-js/mermaid/blob/develop/LICENSE

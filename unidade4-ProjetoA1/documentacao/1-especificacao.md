@@ -22,7 +22,47 @@ A necessidade é ter alguém que olhe o código junto com a pessoa e explique, s
 
 Não escrever código é uma escolha central do projeto, e não uma limitação técnica. Se o problema é usar código sem entender, um bot que gera mais código estaria alimentando o mesmo problema.
 
-## 3. Quem vai usar
+## 3. Requisitos
+
+Os requisitos funcionais dizem o que o DecifraBot faz. Os não funcionais dizem como ele tem que ser: privado, simples, rápido e fácil de manter. Escrevi todos a partir do que o bot já faz. A maior parte é conferida pelos testes automatizados ou foi testada no navegador (ver [4-testes.md](4-testes.md)).
+
+### Requisitos funcionais
+
+| Código | Requisito |
+|---|---|
+| RF01 | Receber um código colado no chat e explicar cada linha em português simples, começando por um resumo de uma frase |
+| RF02 | Deixar a pessoa escolher a linguagem (Python ou JavaScript) num seletor, que começa em Python. Escrever "é javascript" ou "é python" também troca |
+| RF03 | Quando o código parecer da outra linguagem, não explicar errado: pedir para trocar no seletor e explicar o mesmo código depois da troca |
+| RF04 | Reconhecer código Java, C/C++, HTML, SQL e PHP e avisar que ainda não explica essas linguagens |
+| RF05 | Avisar sobre trechos que merecem cuidado (11 tipos de alerta, como apagar arquivo, mandar dados pela internet, montar SQL juntando texto e senha escrita no código) |
+| RF06 | Esconder senhas e chaves de API do código (trocando por `***`) antes de analisar, e avisar a pessoa |
+| RF07 | Descartar uma mensagem que não é código e tem senha, número de cartão ou CPF, sem guardar nem analisar |
+| RF08 | Explicar uma linha específica ("explica a linha 4") e repetir o resumo ("resume") do último código |
+| RF09 | Responder o que é um conceito (19 conceitos, como `for`, lista e função), com exemplo na linguagem escolhida |
+| RF10 | Recusar pedidos para escrever, corrigir ou resolver código, e oferecer explicar o código que a pessoa já tem |
+| RF11 | Dizer quando não sabe explicar uma estrutura (como `lambda` ou `async`), em vez de inventar |
+| RF12 | Quando não conseguir ler o código, dizer em que linha deve estar o erro |
+| RF13 | Admitir quando não entendeu uma pergunta (confiança abaixo de 0,40) e avisar que pode ter entendido errado quando a confiança ficar entre 0,40 e 0,55 |
+| RF14 | Mostrar, em toda resposta, por que o bot respondeu aquilo ("Por que o DecifraBot respondeu isso?") |
+| RF15 | Explicar só as primeiras 80 linhas de um código maior, avisando a pessoa |
+| RF16 | Ter exemplos prontos para testar e um botão para limpar a conversa |
+
+### Requisitos não funcionais
+
+| Código | Tipo | Requisito |
+|---|---|---|
+| RNF01 | Privacidade | No site, o código não sai do navegador. Nada fica salvo depois que a conversa termina, e a memória das últimas mensagens não guarda o código, só uma marcação como "[código Python com 7 linhas]" |
+| RNF02 | Sem IA generativa e sem custo | Não usa API nem chave. As explicações vêm de regras, então o bot não inventa uma explicação errada com confiança |
+| RNF03 | Linguagem | Português simples, falando de "você", sem emoji. Termo técnico só aparece quando está no código, e sempre explicado |
+| RNF04 | Segurança da página | O código da pessoa é mostrado como texto e nunca é executado, mesmo se tiver `<script>` ou HTML dentro |
+| RNF05 | Desempenho | Depois que o site carrega, a resposta aparece na hora. Só a primeira abertura demora alguns segundos, para carregar o Python no navegador |
+| RNF06 | Disponibilidade | Funciona de dois jeitos com o mesmo código: o site no GitHub Pages, sem instalar nada, e a versão em Streamlit, rodando no computador |
+| RNF07 | Usabilidade e acessibilidade | Funciona no celular, o seletor de linguagem dá para usar pelo teclado, e as explicações recuam o que está dentro de cada bloco |
+| RNF08 | Testabilidade | Testes automatizados com pytest cobrindo os analisadores, o agente e o site |
+| RNF09 | Manutenção | As frases de explicação ficam num arquivo só e servem para as duas linguagens, então para adicionar uma linguagem nova basta escrever o analisador dela |
+| RNF10 | Compatibilidade | Python 3.10 ou mais novo, e qualquer navegador atual |
+
+## 4. Quem vai usar
 
 | Usuário | Situação |
 |---|---|
@@ -32,15 +72,15 @@ Não escrever código é uma escolha central do projeto, e não uma limitação 
 
 O primeiro grupo foi o que mais pesou nas decisões, principalmente na linguagem das explicações. Se o DecifraBot explicar com palavras que só quem já sabe programar entende, ele não serve para nada.
 
-## 4. Faz sentido ser um chatbot?
+## 5. Faz sentido ser um chatbot?
 
 Fiz essa pergunta porque o SERPRO coloca a análise de adequação como etapa. Acho que sim, por um motivo: entender código raramente acontece de uma vez. A pessoa lê a explicação e logo vem outra dúvida ("e a linha 4?", "o que é esse range?"). Num chat, ela pergunta na hora, e o bot já sabe de qual código ela está falando. Uma página que só explica e acaba não daria esse vai e volta.
 
-## 5. Resultados esperados
+## 6. Resultados esperados
 
 A pessoa terminar a conversa sabendo o que o código faz, conhecendo os conceitos usados nele, sabendo se tem alguma parte perigosa e sem o DecifraBot ter escrito nenhuma linha de código por ela.
 
-## 6. Persona
+## 7. Persona
 
 O nome é **DecifraBot**, porque ele decifra o código para quem não entende o que está escrito. Pensei nele como aquele colega que programa há mais tempo e explica sem fazer ninguém se sentir burro.
 
@@ -50,7 +90,7 @@ O nome é **DecifraBot**, porque ele decifra o código para quem não entende o 
 - Os alertas não são alarmistas. Ele diz o que a linha faz e por que merece cuidado, sem acusar o código de ser vírus, porque às vezes apagar um arquivo é exatamente o que a pessoa queria.
 - Não usa emoji nem piada, porque quem cola um código que não entende geralmente está inseguro.
 
-## 7. Acervo
+## 8. Acervo
 
 O que o DecifraBot sabe está em três lugares:
 
@@ -62,7 +102,7 @@ O que o DecifraBot sabe está em três lugares:
 
 Escrevi as explicações dos conceitos pensando em como eu teria gostado que me explicassem quando comecei.
 
-## 8. O que ele reconhece
+## 9. O que ele reconhece
 
 | Estrutura | Python | JavaScript |
 |---|---|---|
@@ -76,7 +116,7 @@ Escrevi as explicações dos conceitos pensando em como eu teria gostado que me 
 
 O que fica de fora (classes, `lambda`, `async`/`await`, callbacks mais complexos) recebe a resposta "isso eu ainda não sei explicar".
 
-## 9. UX writing
+## 10. UX writing
 
 As regras que usei para escrever as mensagens:
 
@@ -87,6 +127,27 @@ As regras que usei para escrever as mensagens:
 5. Quando não sabe: *"usa uma função `lambda`, que eu ainda não sei explicar. Prefiro avisar a chutar."*
 6. Quando o código é da outra linguagem: *"Esse código parece JavaScript, mas a linguagem escolhida é Python. Troque para JavaScript no seletor de linguagem (ou escreva \"é javascript\") que eu explico."* Ao trocar, ele explica o código que ficou esperando, sem a pessoa ter que colar de novo.
 7. Quando recusa: *"Isso eu não faço: eu não escrevo nem corrijo código. Meu papel é te ajudar a entender. Se você colar o código que tem, eu explico cada parte..."*
+
+## 11. Fluxo da conversa
+
+Um exemplo de conversa do começo ao fim, passando pelas situações mais comuns: código da outra linguagem, troca no seletor, pergunta sobre uma linha, pergunta sobre um conceito e pedido para escrever código.
+
+```mermaid
+sequenceDiagram
+    actor P as Pessoa
+    participant B as DecifraBot
+    Note over P,B: O seletor começa em Python
+    P->>B: Cola um código JavaScript
+    B-->>P: "Esse código parece JavaScript... troque no seletor"
+    P->>B: Troca o seletor para JavaScript
+    B-->>P: Resumo, explicação de cada linha, alertas e conceitos usados
+    P->>B: "explica a linha 2"
+    B-->>P: Explicação só da linha 2
+    P->>B: "o que é um for?"
+    B-->>P: Explica o conceito, com exemplo em JavaScript
+    P->>B: "corrige meu código pra mim"
+    B-->>P: Recusa e oferece explicar o código
+```
 
 ## Referências
 

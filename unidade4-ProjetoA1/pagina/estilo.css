@@ -163,7 +163,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .docs-layout nav a:hover { background: var(--elevado); }
 .docs-layout nav a[aria-current="page"] { background: var(--bolha-voce); font-weight: 600; }
 
-.doc { padding: 8px 24px 24px; min-height: 300px; }
+.doc { padding: 8px 24px 24px; min-height: 300px; overflow-wrap: break-word; }
 .doc h1 { font-size: 1.6rem; }
 .doc h2 { font-size: 1.25rem; margin-top: 1.8em; border-bottom: 1px solid var(--borda); padding-bottom: 4px; }
 .doc h3 { font-size: 1.05rem; }
@@ -177,17 +177,13 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .doc th, .doc td { border: 1px solid var(--borda); padding: 6px 10px; text-align: left; vertical-align: top; }
 .doc th { background: var(--elevado); }
 
-.fluxo { list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 22px; max-width: 560px; }
-.fluxo li {
-  position: relative; border: 1px solid var(--destaque); border-radius: 8px; padding: 8px 12px;
-  background: var(--elevado); text-align: center;
+.diagrama {
+  margin: 16px 0; padding: 16px; overflow-x: auto; text-align: center;
+  background: var(--superficie); border: 1px solid var(--borda); border-radius: 8px;
 }
-.fluxo li strong, .fluxo li span { display: block; }
-.fluxo li span { color: var(--texto-suave); font-size: 0.88rem; }
-.fluxo li:not(:last-child)::after {
-  content: "↓"; position: absolute; left: 50%; bottom: -21px; transform: translateX(-50%);
-  color: var(--destaque); font-weight: 700;
-}
+.diagrama svg { max-width: 100%; height: auto; }
+/* diagramas grandes não encolhem até ficar ilegível: no celular, dá para arrastar para o lado */
+@media (max-width: 700px) { .diagrama svg { max-width: none; min-width: 560px; } }
 
 footer { color: var(--texto-suave); font-size: 0.82rem; padding-block: 8px 32px; }
 footer p { margin: 4px 0; }

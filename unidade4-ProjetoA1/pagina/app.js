@@ -294,24 +294,66 @@
   const linksDocs = [...document.querySelectorAll("[data-doc]")];
   const DOCS = linksDocs.map((link) => link.dataset.doc);
 
-  // o GitHub desenha o diagrama mermaid sozinho; aqui o fluxo (que é linear) vira uma lista de caixas
-  function desenharFluxo(codigo) {
-    const nos = new Map();
-    for (const achado of codigo.matchAll(/(\w+)\s*\[\s*"?([^"\]]+?)"?\s*\]/g)) {
-      if (!nos.has(achado[1])) nos.set(achado[1], achado[2]);
-    }
-    const lista = document.createElement("ol");
-    lista.className = "fluxo";
-    for (const rotulo of nos.values()) {
-      const item = document.createElement("li");
-      rotulo.split(/<br\s*\/?>/i).forEach((parte, i) => {
-        const el = document.createElement(i === 0 ? "strong" : "span");
-        el.textContent = parte;
-        item.append(el);
+  // os diagramas são escritos em mermaid, igual o GitHub mostra. A biblioteca (2,5 MB) só é
+  // baixada quando a pessoa abre a documentação, para não atrasar o chat.
+  let mermaidPronto = null;
+  let contadorDiagramas = 0;
+  function carregarMermaid() {
+    if (!mermaidPronto) {
+      mermaidPronto = new Promise((ok, falhou) => {
+        const script = document.createElement("script");
+        script.src = "pagina/bibliotecas/mermaid/mermaid.min.js";
+        script.onload = () => {
+          const cor = (nome) => getComputedStyle(document.documentElement).getPropertyValue(nome).trim();
+          window.mermaid.initialize({
+            startOnLoad: false,
+            securityLevel: "strict",
+            theme: "base",
+            fontFamily: getComputedStyle(document.body).fontFamily,
+            themeVariables: {
+              darkMode: true,
+              background: cor("--superficie"),
+              primaryColor: cor("--elevado"),
+              primaryTextColor: cor("--texto"),
+              primaryBorderColor: cor("--destaque"),
+              lineColor: cor("--texto-suave"),
+              textColor: cor("--texto"),
+              edgeLabelBackground: cor("--superficie"),
+              actorBkg: cor("--elevado"),
+              actorBorder: cor("--destaque"),
+              actorTextColor: cor("--texto"),
+              signalColor: cor("--texto-suave"),
+              signalTextColor: cor("--texto"),
+              noteBkgColor: cor("--tinta-fundo"),
+              noteTextColor: cor("--tinta"),
+              noteBorderColor: cor("--destaque"),
+            },
+          });
+          ok(window.mermaid);
+        };
+        script.onerror = () => { mermaidPronto = null; falhou(new Error("mermaid não carregou")); };
+        document.head.append(script);
       });
-      lista.append(item);
     }
-    return lista;
+    return mermaidPronto;
+  }
+
+  async function desenharDiagramas(id) {
+    for (const codigo of visor.querySelectorAll("code.language-mermaid")) {
+      const bloco = codigo.parentElement;
+      try {
+        const mermaid = await carregarMermaid();
+        const { svg } = await mermaid.render(`diagrama-${++contadorDiagramas}`, codigo.textContent);
+        if (docAtual !== id || !bloco.isConnected) return; // a pessoa já trocou de documento
+        const figura = document.createElement("figure");
+        figura.className = "diagrama";
+        figura.innerHTML = svg;
+        bloco.replaceWith(figura);
+      } catch (erro) {
+        // sem a biblioteca, o diagrama continua aparecendo como texto, que ainda dá para ler
+        bloco.classList.add("diagrama-texto");
+      }
+    }
   }
 
   async function abrirDoc(id) {
@@ -335,15 +377,13 @@
       tabela.before(caixaTabela);
       caixaTabela.append(tabela);
     });
-    visor.querySelectorAll("code.language-mermaid").forEach((codigo) => {
-      codigo.parentElement.replaceWith(desenharFluxo(codigo.textContent));
-    });
     visor.querySelectorAll("a[href]").forEach((link) => {
       const href = link.getAttribute("href");
       const outroDoc = href.match(/^(?:\.\/)?([\w-]+)\.md$/);
       if (outroDoc && DOCS.includes(outroDoc[1])) link.setAttribute("href", `#doc/${outroDoc[1]}`);
       else if (/^https?:/.test(href)) { link.target = "_blank"; link.rel = "noopener"; }
     });
+    await desenharDiagramas(id);
   }
 
   function seguirEndereco() {
