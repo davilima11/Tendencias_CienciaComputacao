@@ -1,99 +1,151 @@
 # DecifraBot
 
-Hoje muita gente pede para uma IA gerar um código e usa o resultado sem saber o que ele faz. O DecifraBot vai no caminho contrário: a pessoa cola um código e ele explica, em português simples, o que cada linha faz. Também serve para quem achou um código interessante por aí e quer entender como ele funciona.
-
-Projeto final da Unidade IV (Agentes e Ética) da disciplina Tendências em Ciência da Computação.
+Agente que explica código Python e JavaScript linha por linha, em português simples, para quem está começando a programar.
 
 | | |
 |---|---|
 | **Aluno** | Davi Vieira Lima |
 | **RGM** | 39538061 |
+| **Disciplina** | Tendências em Ciência da Computação, Unidade IV (Agentes e Ética) |
 | **Professora** | Kadidja Valéria |
 | **Instituição** | UDF Centro Universitário |
-| **Ferramenta de IA usada como apoio** | Claude |
 
-**Versão online:** https://davilima11.github.io/Tendencias_CienciaComputacao/unidade4-ProjetoA1/ (dá para usar e ler a documentação direto no navegador, sem instalar nada)
+**Versão online:** https://davilima11.github.io/Tendencias_CienciaComputacao/unidade4-ProjetoA1/
 
 ![Tela do DecifraBot](documentacao/imagens/tela.png)
 
-## O que ele faz
+## Atividades da unidade
 
-Explica código **Python** e **JavaScript** linha por linha. A pessoa escolhe a linguagem num seletor acima do campo de texto (começa em Python). O bot avisa quando o código faz algo que merece cuidado (apagar arquivos, mandar dados pela internet, montar SQL juntando texto, guardar senha no código) e responde perguntas sobre os conceitos que aparecem, como "o que é um for?". Depois de explicar, dá para pedir "explica a linha 4" ou "resume".
+| Data | Atividade | Onde está |
+|---|---|---|
+| 05/11 | Criação de agentes de IA | [Arquitetura do agente](documentacao/2-arquitetura-do-agente.md) |
+| 12/11 | Chatbot com a especificação | [Especificação](documentacao/1-especificacao.md) e o site |
+| 19/11 | Viés algorítmico e responsabilidade social | [Ética e viés](documentacao/3-etica-e-vies.md) |
+| 26/11 | Projeto final e repositório | Esta pasta e [Testes e curadoria](documentacao/4-testes.md) |
 
-E o que ele **não** faz: não escreve nem corrige código, não executa o código e não guarda nada depois que a conversa acaba. Senhas e chaves que estiverem no código são escondidas antes de qualquer análise. Quando encontra algo que não sabe explicar, ele diz isso em vez de inventar.
+## Sumário
 
-## Como rodar
+1. [Introdução](#1-introdução)
+2. [Problema](#2-problema)
+3. [Objetivos](#3-objetivos)
+4. [Tecnologias](#4-tecnologias)
+5. [Arquitetura do agente](#5-arquitetura-do-agente)
+6. [Memória](#6-memória)
+7. [Privacidade e LGPD](#7-privacidade-e-lgpd)
+8. [Viés e mitigação](#8-viés-e-mitigação)
+9. [Testes e resultados](#9-testes-e-resultados)
+10. [Vantagens e limitações](#10-vantagens-e-limitações)
+11. [Como rodar](#11-como-rodar)
+12. [Estrutura de pastas](#12-estrutura-de-pastas)
+13. [Referências](#13-referências)
 
-Precisa de Python 3.10 ou mais novo. Todos os comandos são rodados de dentro desta pasta:
+## 1. Introdução
 
-```bash
-cd unidade4-ProjetoA1
+O DecifraBot é um chatbot em que a pessoa cola um código e recebe a explicação de cada linha. Ele também avisa quando o código faz algo perigoso e responde dúvidas como "o que é um for?". A documentação segue o fluxo de trabalho de chatbots do SERPRO.
+
+## 2. Problema
+
+Com a IA, ficou fácil conseguir código pronto, e muita gente usa sem entender. Quem está aprendendo não aprende nada, e rodar código desconhecido é arriscado: ele pode apagar arquivos ou ter uma senha escrita no meio.
+
+## 3. Objetivos
+
+**Geral:** ajudar a pessoa a entender um código antes de usar.
+
+**Específicos:**
+
+- Explicar Python e JavaScript linha por linha, sem jargão.
+- Avisar sobre trechos perigosos.
+- Esconder senhas e chaves antes de analisar.
+- Recusar escrever ou corrigir código.
+- Admitir quando não sabe, em vez de inventar.
+
+## 4. Tecnologias
+
+| Tecnologia | Para quê |
+|---|---|
+| Python | O agente inteiro |
+| `ast` e `esprima` | Ler código Python e JavaScript |
+| TF-IDF (feito à mão) | Entender as perguntas |
+| Streamlit | Versão para rodar no computador |
+| Pyodide + GitHub Pages | Versão online, com o Python rodando no navegador |
+| pytest | Testes automatizados |
+
+Não usei API de IA generativa: um modelo poderia inventar uma explicação errada, e um iniciante não perceberia.
+
+## 5. Arquitetura do agente
+
+```mermaid
+flowchart TD
+    A[Mensagem do usuário] --> P
+    P["1. Perceptiva<br/>separa código de pergunta e esconde senhas"] --> C
+    C["2. Cognitiva<br/>lê o código ou entende a pergunta"] --> D
+    D["3. Decisória<br/>escolhe o que fazer"] --> E
+    E["4. Executiva<br/>monta a resposta"] --> R[Resposta + explicação da decisão]
 ```
+
+A camada decisória escolhe entre explicar, pedir para trocar a linguagem, recusar ou admitir que não entendeu. Toda resposta mostra o porquê da decisão. Detalhes em [Arquitetura do agente](documentacao/2-arquitetura-do-agente.md).
+
+## 6. Memória
+
+| Nível | O que guarda |
+|---|---|
+| Curta | As últimas 6 mensagens, sem o código |
+| Média | O último código e a linguagem escolhida, para responder "explica a linha 4" |
+| Longa | Nada. Fechou a página, tudo some |
+
+## 7. Privacidade e LGPD
+
+- Senhas, chaves de API, CPF e cartão são trocados por `***` antes da análise.
+- No site, o código não sai do navegador.
+- Mensagem com senha fora de um código é descartada.
+
+## 8. Viés e mitigação
+
+O principal viés: quem pergunta sem o termo técnico é entendido pior, e esse é justamente o iniciante. Para diminuir, o bot aceita erros de digitação e avisa quando não tem certeza. O limiar de confiança (0,40) foi escolhido testando perguntas que não estavam na base. A análise completa está em [Ética e viés](documentacao/3-etica-e-vies.md).
+
+## 9. Testes e resultados
+
+| Teste | Resultado |
+|---|---|
+| Testes automatizados | 59 de 59 passando |
+| Perguntas novas (validação) | 15 de 16 entendidas |
+| Perguntas fora do assunto | 10 de 12 rejeitadas |
+| Tentativas de fazer o bot falhar | 12 casos, como pedir para corrigir código e colar `<script>` |
+
+Detalhes em [Testes e curadoria](documentacao/4-testes.md).
+
+## 10. Vantagens e limitações
+
+| Vantagens | Limitações |
+|---|---|
+| Não tem custo nem chave de API | Ainda não foi testado com alunos iniciantes |
+| O código não vai para servidor nenhum | Não explica classes, `lambda` e `async` |
+| Toda explicação vem de uma regra que dá para conferir | Só explica Python e JavaScript |
+
+## 11. Como rodar
+
+Precisa de Python 3.10 ou mais novo. Dentro da pasta `unidade4-ProjetoA1`:
 
 ```bash
 pip install -r requirements.txt
-streamlit run app.py
+streamlit run app.py      # versão em Streamlit
+python -m http.server     # versão web, em http://localhost:8000
+python -m pytest          # testes
 ```
 
-Para abrir a versão web no computador (a mesma do site):
-
-```bash
-python -m http.server
-# depois abra http://localhost:8000
-```
-
-Para rodar os testes:
-
-```bash
-python -m pytest
-python -m testes.calibrar_limiar   # mostra como escolhi o limiar de confiança
-```
-
-## Onde está cada entrega
-
-| Entrega da Unidade IV | Onde está |
-|---|---|
-| Criação de agente de IA | [documentacao/2-arquitetura-do-agente.md](documentacao/2-arquitetura-do-agente.md) e a pasta `decifra/` |
-| Chatbot com a especificação | [documentacao/1-especificacao.md](documentacao/1-especificacao.md) e `app.py` |
-| Viés algorítmico e responsabilidade social | [documentacao/3-etica-e-vies.md](documentacao/3-etica-e-vies.md) |
-| Projeto final (solução aplicada) | este repositório, com os testes em [documentacao/4-testes.md](documentacao/4-testes.md) |
-
-A documentação segue o fluxo de trabalho de chatbots do SERPRO, adaptado para o tamanho de um projeto de disciplina.
-
-## Estrutura
+## 12. Estrutura de pastas
 
 ```
-app.py                        interface em Streamlit
-index.html                    versão web (o mesmo código Python rodando no navegador)
-decifra/
-  agente.py                   as 4 camadas do agente (perceber, entender, decidir, executar)
-  memoria.py                  memória curta e média
-  linguagem.py                percebe quando o código é de outra linguagem, para avisar
-  privacidade.py              esconde senhas e chaves antes da análise
-  tfidf.py                    TF-IDF feito à mão, para entender as perguntas
-  textos.py                   frases de explicação compartilhadas entre as linguagens
-  ponte.py                    liga o código Python à versão web
-  analisadores/python.py      lê Python com o módulo ast
-  analisadores/javascript.py  lê JavaScript com a biblioteca esprima
-dados/
-  conhecimento.json           conceitos, perguntas e respostas
-  exemplos.json               códigos de exemplo da tela
-pagina/                       estilo e script da versão web
-  bibliotecas/                Pyodide, esprima, marked e Mermaid (cópias, para o site não depender de outro servidor)
-testes/                       testes com pytest e script de calibração
-documentacao/                 especificação, arquitetura, ética e testes
-  imagens/                    print da tela
+decifra/         o agente (4 camadas, memória, privacidade, TF-IDF e analisadores)
+dados/           conceitos, perguntas e exemplos
+documentacao/    especificação, arquitetura, ética e testes
+pagina/          estilo, script e bibliotecas da versão web
+testes/          testes com pytest
+app.py           versão em Streamlit
+index.html       versão web
 ```
 
-## Tecnologias
-
-Python, Streamlit, o módulo `ast` do próprio Python, a biblioteca `esprima` (para ler JavaScript) e pytest. Os diagramas da documentação são feitos em Mermaid, que o GitHub e o site desenham. A versão online usa o Pyodide, que roda Python dentro do navegador. Não usa API de IA nenhuma: o código da pessoa não sai do computador dela. O motivo dessa escolha está na arquitetura.
-
-## Mais linguagens
-
-Cada linguagem tem um analisador próprio, mas as frases de explicação ficam num arquivo só (`decifra/textos.py`) e são usadas pelas duas. Para ensinar Java ao DecifraBot, por exemplo, seria preciso um analisador novo que leia Java (a biblioteca `javalang` faz isso); o texto das explicações já está quase todo pronto.
-
-## Referências
+## 13. Referências
 
 **Material da disciplina**
 
@@ -122,4 +174,6 @@ Cada linguagem tem um analisador próprio, mas as frases de explicação ficam n
 - scikit-learn (usado só no teste que confere o TF-IDF feito à mão). Disponível em: https://scikit-learn.org
 - pytest (testes automatizados). Disponível em: https://pytest.org
 
-**Ferramenta de IA usada como apoio:** Claude (Anthropic).
+## Uso de IA neste projeto
+
+Ferramenta de IA usada como apoio: Claude (Anthropic).
