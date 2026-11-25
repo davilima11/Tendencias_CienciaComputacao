@@ -128,27 +128,6 @@ As regras que usei para escrever as mensagens:
 6. Quando o código é da outra linguagem: *"Esse código parece JavaScript, mas a linguagem escolhida é Python. Troque para JavaScript no seletor de linguagem (ou escreva \"é javascript\") que eu explico."* Ao trocar, ele explica o código que ficou esperando, sem a pessoa ter que colar de novo.
 7. Quando recusa: *"Isso eu não faço: eu não escrevo nem corrijo código. Meu papel é te ajudar a entender. Se você colar o código que tem, eu explico cada parte..."*
 
-## 11. Fluxo da conversa
-
-Um exemplo de conversa do começo ao fim, passando pelas situações mais comuns: código da outra linguagem, troca no seletor, pergunta sobre uma linha, pergunta sobre um conceito e pedido para escrever código.
-
-```mermaid
-sequenceDiagram
-    actor P as Pessoa
-    participant B as DecifraBot
-    Note over P,B: O seletor começa em Python
-    P->>B: Cola um código JavaScript
-    B-->>P: "Esse código parece JavaScript... troque no seletor"
-    P->>B: Troca o seletor para JavaScript
-    B-->>P: Resumo, explicação de cada linha, alertas e conceitos usados
-    P->>B: "explica a linha 2"
-    B-->>P: Explicação só da linha 2
-    P->>B: "o que é um for?"
-    B-->>P: Explica o conceito, com exemplo em JavaScript
-    P->>B: "corrige meu código pra mim"
-    B-->>P: Recusa e oferece explicar o código
-```
-
 ## Referências
 
 - SERPRO. *Desenvolvendo Chatbots: fluxo de trabalho*. Disponível em: https://serprobots.estaleiro.serpro.gov.br/docs/dev/
