@@ -23,6 +23,16 @@ Agente que explica código Python e JavaScript linha por linha, em português si
 | 19/11 | Viés algorítmico e responsabilidade social | [Ética e viés](documentacao/3-etica-e-vies.md) |
 | 26/11 | Projeto final e repositório | Esta pasta e [Testes e curadoria](documentacao/4-testes.md) |
 
+## Como testar
+
+Na pasta [codigos-de-exemplo](codigos-de-exemplo/) tem 9 códigos prontos em Python e JavaScript para colar no bot: alguns simples, alguns com trechos perigosos (para ver os alertas) e um com coisas que ele ainda não sabe explicar.
+
+1. Abra o [site do DecifraBot](https://davilima11.github.io/Tendencias_CienciaComputacao/unidade4-ProjetoA1/).
+2. Escolha um arquivo da pasta e copie o código.
+3. Escolha a linguagem no seletor, cole no chat e envie.
+
+Depois dá para continuar perguntando, por exemplo "explica a linha 3" ou "o que é um while?".
+
 ## Sumário
 
 1. [Introdução](#1-introdução)
@@ -107,7 +117,7 @@ O principal viés: quem pergunta sem o termo técnico é entendido pior, e esse 
 
 | Teste | Resultado |
 |---|---|
-| Testes automatizados | 59 de 59 passando |
+| Testes automatizados | 61 de 61 passando |
 | Perguntas novas (validação) | 15 de 16 entendidas |
 | Perguntas fora do assunto | 10 de 12 rejeitadas |
 | Tentativas de fazer o bot falhar | 12 casos, como pedir para corrigir código e colar `<script>` |
@@ -136,13 +146,14 @@ python -m pytest          # testes
 ## 12. Estrutura de pastas
 
 ```
-decifra/         o agente (4 camadas, memória, privacidade, TF-IDF e analisadores)
-dados/           conceitos, perguntas e exemplos
-documentacao/    especificação, arquitetura, ética e testes
-pagina/          estilo, script e bibliotecas da versão web
-testes/          testes com pytest
-app.py           versão em Streamlit
-index.html       versão web
+decifra/             o agente (4 camadas, memória, privacidade, TF-IDF e analisadores)
+codigos-de-exemplo/  códigos prontos para testar o bot
+dados/               conceitos, perguntas e exemplos
+documentacao/        especificação, arquitetura, ética e testes
+pagina/              estilo, script e bibliotecas da versão web
+testes/              testes com pytest
+app.py               versão em Streamlit
+index.html           versão web
 ```
 
 ## 13. Referências

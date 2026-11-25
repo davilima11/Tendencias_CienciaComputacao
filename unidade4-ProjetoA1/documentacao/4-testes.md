@@ -13,12 +13,13 @@ O teste que compara o TF-IDF com o scikit-learn só roda se o scikit-learn estiv
 
 ## Testes automatizados
 
-São 59 testes, todos passando.
+São 61 testes, todos passando.
 
 | Arquivo | O que confere | Testes |
 |---|---|---|
 | `test_python.py` | Código de iniciante, função com `if`/`elif`/`else`, `range`, `while`, `try`, `with open`, list comprehension, alertas de segurança, SQL parametrizado sem alerta falso, estruturas que ele não sabe, erro de sintaxe | 9 |
 | `test_javascript.py` | O mesmo para JavaScript, mais `for` com contador, `else if`, arrow function, `map`, `filter`, `addEventListener`, e um teste que confere que Python e JavaScript usam exatamente a mesma frase para o laço | 8 |
+| `test_exemplos.py` | Os 9 códigos da pasta `codigos-de-exemplo` continuam sendo explicados, com os alertas certos, e o código avançado recebe o aviso de que o bot não sabe explicar | 2 |
 | `test_site.py` | A lista de arquivos que o site carrega está atualizada, a ponte devolve JSON que a página entende, uma linha com crase é citada sem quebrar e o seletor de linguagem funciona pela ponte | 4 |
 | `test_agente.py` | Reconhecimento de 8 linguagens, linguagens que ele não explica, seletor de linguagem (começa em Python, pede para trocar, explica o código guardado depois da troca, "é javascript" também troca), senhas e chaves escondidas (e que não chegam na memória), conversa inteira (linha, resumo, conceito), recusas, perguntas fora do assunto e TF-IDF igual ao scikit-learn | 38 |
 
